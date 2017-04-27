@@ -1,0 +1,33 @@
+{
+  "name": "broaderify",
+  "version": "0.1.0",
+  "description": "All-around transform for Browserify",
+  "keywords": [
+    "browserify",
+    "browserify-transform"
+  ],
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "npm prune && npm update",
+    "test": "tap test/*.js --cov --reporter=spec --100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmorand/broaderify.git"
+  },
+  "author": "Eric MORAND",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ericmorand/broaderify/issues"
+  },
+  "homepage": "https://github.com/ericmorand/broaderify#readme",
+  "dependencies": {
+    "through2": "^2.0.3"
+  },
+  "devDependencies": {
+    "tap": "^10.3.0"
+  }
+}
