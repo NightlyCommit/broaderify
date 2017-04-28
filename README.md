@@ -46,8 +46,8 @@ let bundle = browserify()
 
 ### Configuration options:
 
-* loader: An array of loaders that will be tested against each module passed to broaderify. Each loader must be an object with at least the following properties:
-    * filter: For now, a [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance that will be tested against the path of the module to determine if it should be transformed.
+* loaders: An array of loaders that will be tested against each module passed to broaderify. Each loader must be an object with at least the following properties:
+    * filter: A [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance that will be tested against the path of the module to determine if it should be transformed.
     * worker: A function that will be called for each module that needs transformation, with the following arguments:
         * module: The path of the module.
         * content: The content of the module - i.e. the source.
