@@ -12,7 +12,7 @@ npm install broaderify
 
 ## Motivation
 
-The initial motivation comes from the need to inject dependencies into modules that don't use CommonJS to import their dependencies - [bootstrap 3](http://getbootstrap.com/) for example, and the flawed approach used by [browserify-shim](https://github.com/thlorenz/browserify-shim) to deal with that problem:
+The initial motivation comes from the need to inject dependencies into modules that don't import them by themselves - [bootstrap 3](http://getbootstrap.com/) for example, and by the flawed approach used by [browserify-shim](https://github.com/thlorenz/browserify-shim) to deal with that problem:
 
 * Pollution of the global scope since browserify-shim is unable to inject dependency in the scope of the dependent module
 * Configuration in package.json *only* - a thing that makes browserify-shim stands apart from every other Browserify transforms and implies having Browserify configuration splits in two different places just because of browserify-shim
