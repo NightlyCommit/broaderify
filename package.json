@@ -1,6 +1,6 @@
 {
   "name": "broaderify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "All-around transform for Browserify",
   "keywords": [
     "browserify",
