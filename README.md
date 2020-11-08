@@ -113,7 +113,7 @@ Apache-2.0 © [Eric MORAND]()
 
 [npm-image]: https://badge.fury.io/js/broaderify.svg
 [npm-url]: https://npmjs.org/package/broaderify
-[travis-image]: https://travis-ci.org/NightlyCommit/broaderify.svg?branch=master
-[travis-url]: https://travis-ci.org/NightlyCommit/broaderify
+[travis-image]: https://travis-ci.com/NightlyCommit/broaderify.svg?branch=master
+[travis-url]: https://travis-ci.com/NightlyCommit/broaderify
 [coveralls-image]: https://coveralls.io/repos/github/NightlyCommit/broaderify/badge.svg
 [coveralls-url]: https://coveralls.io/github/NightlyCommit/broaderify
