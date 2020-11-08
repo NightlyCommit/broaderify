@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericmorand/broaderify.git"
+    "url": "git+https://github.com/NightlyCommit/broaderify.git"
   },
   "author": "Eric MORAND",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ericmorand/broaderify/issues"
+    "url": "https://github.com/NightlyCommit/broaderify/issues"
   },
-  "homepage": "https://github.com/ericmorand/broaderify#readme",
+  "homepage": "https://github.com/NightlyCommit/broaderify#readme",
   "devDependencies": {
     "@types/node": "^14.14.6",
     "@types/tape": "^4.13.0",
