@@ -1,6 +1,6 @@
 # broaderify
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 All-around transform for Browserify.
 
@@ -21,64 +21,57 @@ Broaderify adopts a very similar strategy to [webpack](https://webpack.github.io
  
 ## Usage
 
-Broaderify is a middleware-only transform for now. There is currently no way to use broaderify in the command-line - but it *is* on the road-map.
+```typescript
+import * as Browserify from "browserify";
+import broaderify from "broaderify";
 
-### Example
-
-```javascript
-let browserify = require('browserify');
-let broaderify = require('broaderify');
-
-let bundle = browserify()
+Browserify()
     .transform(broaderify, {
-        loaders: [
-            {
-                filter: /foo.js/,
-                worker: function(module, content, done) {
-                    // do whatever you want with content
-                    done(content);
-                }
+        loaders: [{
+            filter: /foo.js/,
+            worker: (module, content, done) => {
+                // do whatever you want with content
+                done(content);
             }
-        ]
+        }]
     })
     .add('index.js');
 ```
 
-### Configuration options:
 
-* loaders: An array of loaders that will be tested against each module passed to broaderify. Each loader must be an object with at least the following properties:
+## API
+
+Read the [documentation](https://nightlycommit.github.io/broaderify) for more information.
+
+## Configuration options:
+
+* **global**: A boolean indicating if broaderify should be applied to node_modules modules.
+* **loaders**: An array of loaders that will be tested against each module passed to broaderify. Each loader must be an object with at least the following properties:
     * filter: A [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance that will be tested against the path of the module to determine if it should be transformed.
     * worker: A function that will be called for each module that needs transformation, with the following arguments:
         * module: The path of the module.
         * content: The content of the module - i.e. the source.
         * done: A function that needs to be called with the transformed source once the transformation is done.
- 
-## Road-map:
-
-* Add support for function to be used as filter
-* Add command-line support
-
+        
 ## Recipes
 
 ### Injecting jQuery into Bootstrap 3
 
-```javascript
-let browserify = require('browserify');
-let broaderify = require('broaderify');
+```typescript
+import * as Browserify from "browserify";
+import broaderify from "broaderify";
 
 let bundle = browserify()
     .transform(broaderify, {
         global: true,
-        loaders: [
-            {
-                filter: /node_modules\/bootstrap\/js\/(.*).js/,
-                worker: function(module, content, done) {
-                    content = 'var jQuery = require(\'jquery\');' + content;
+        loaders: [{
+            filter: /node_modules\/bootstrap\/js\/(.*).js/,
+            worker: (module, content, done) => {
+                content = 'var jQuery = require(\'jquery\');' + content;
 
-                    done(content);
-                }
+                done(content);
             }
-        ]
+        }]
     })
     .add('index.js');
 ```
@@ -87,24 +80,22 @@ let bundle = browserify()
 
 Let's take [parallax.js](http://matthew.wagerfield.com/parallax/) jQuery plugin as an example. It is a very good example because it makes the explicit assumption that jQuery is part of the *window* object:
 
-```javascript
-let browserify = require('browserify');
-let broaderify = require('broaderify');
+```typescript
+import * as Browserify from "browserify";
+import broaderify from "broaderify";
 
 let bundle = browserify()
     .transform(broaderify, {
         global: true,
-        loaders: [
-            {
-                filter: /node_modules\/parallax-js\/source\/jquery.parallax.js/,
-                worker: function (module, content, done) {
-                    content = content.replace('window.jQuery || window.Zepto', 'jQuery');
-                    content = 'var jQuery = require(\'jquery\');' + content;
+        loaders: [{
+            filter: /node_modules\/parallax-js\/source\/jquery.parallax.js/,
+            worker: (module, content, done) => {
+                content = content.replace('window.jQuery || window.Zepto', 'jQuery');
+                content = 'var jQuery = require(\'jquery\');' + content;
 
-                    done(content);
-                }
+                done(content);
             }
-        ]
+        }]
     })
     .add('index.js');
 ```
@@ -113,7 +104,7 @@ let bundle = browserify()
 
 * Fork the main repository
 * Code
-* Implement tests using [node-tap](https://github.com/tapjs/node-tap)
+* Implement tests using [tape](https://github.com/substack/tape)
 * Issue a pull request keeping in mind that all pull requests must reference an issue in the issue queue
 
 ## License
@@ -124,7 +115,5 @@ Apache-2.0 © [Eric MORAND]()
 [npm-url]: https://npmjs.org/package/broaderify
 [travis-image]: https://travis-ci.org/ericmorand/broaderify.svg?branch=master
 [travis-url]: https://travis-ci.org/ericmorand/broaderify
-[daviddm-image]: https://david-dm.org/ericmorand/broaderify.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/ericmorand/broaderify
 [coveralls-image]: https://coveralls.io/repos/github/ericmorand/broaderify/badge.svg
 [coveralls-url]: https://coveralls.io/github/ericmorand/broaderify
